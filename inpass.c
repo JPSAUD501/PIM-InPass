@@ -17,7 +17,7 @@ struct defaultStrings {
     char pressAnyKey[100];
 };
 
-struct defaultStrings language[2] = {
+struct defaultStrings language[3] = {
     {
         "Language selected: English",
         "Enter your InPass password: ",
@@ -41,6 +41,18 @@ struct defaultStrings language[2] = {
         "Opcao invalida!",
         "Saindo do InPass...",
         "Pressione qualquer tecla para continuar..."
+    },
+    {
+        "Idioma seleccionado: Español",
+        "Introduzca su contraseña InPass:",
+        "¡Por favor introduce una contraseña válida!",
+        "Criação de contraseñas InPass...",
+        "Su InPass se creó correctamente con la contraseña: ",
+        "Seleccione la contraseña que desea utilizar:",
+        "Salir de InPass",
+        "¡Opción inválida!",
+        "Saliendo de InPass...",
+        "Pulse cualquier tecla para continuar..."
     }
 };
 
@@ -68,12 +80,12 @@ int main() {
     printf("========================================\n>>>>>>>>>>> InPass <<<<<<<<<<<\n========================================\n\n");
 
     do {
-        printf("Please select a language to continue: (0 - English, 1 - Portuguese)\n");
+        printf("Please select a language to continue: (0 - English, 1 - Portuguese, 2 - Español)\n");
         scanf("%d", &lang);
-        if (lang != 0 && lang != 1) {
+        if (lang != 0 && lang != 1 && lang != 2) {
             printf("Invalid language selected. Please try again.\n");
         }
-    } while (lang != 0 && lang != 1);
+    } while (lang != 0 && lang != 1 && lang != 2);
 
     printf("%s\n", language[lang].languageSelected);
 
