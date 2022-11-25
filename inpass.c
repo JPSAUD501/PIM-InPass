@@ -15,6 +15,8 @@ struct defaultStrings {
     char invalidOption[100];
     char exiting[100];
     char pressAnyKey[100];
+    char decryptInPass[100];
+    char decryptedInPass[100];
 };
 
 struct defaultStrings language[3] = {
@@ -28,7 +30,9 @@ struct defaultStrings language[3] = {
         "Exit InPass",
         "Invalid option!",
         "Exiting InPass...",
-        "Press any key to continue..."
+        "Press any key to continue...",
+        "Decrypt InPass and get master key",
+        "InPass master key",
     },
     {
         "Linguagem selecionada: Portugues",
@@ -40,7 +44,9 @@ struct defaultStrings language[3] = {
         "Sair do InPass",
         "Opcao invalida!",
         "Saindo do InPass...",
-        "Pressione qualquer tecla para continuar..."
+        "Pressione qualquer tecla para continuar...",
+        "Descriptografar o InPass e obter a chave mestra",
+        "Clave maestra do InPass"
     },
     {
         "Idioma seleccionado: Español",
@@ -52,7 +58,9 @@ struct defaultStrings language[3] = {
         "Salir de InPass",
         "¡Opción inválida!",
         "Saliendo de InPass...",
-        "Pulse cualquier tecla para continuar..."
+        "Pulse cualquier tecla para continuar...",
+        "Descifrar InPass y obtener la clave maestra",
+        "Clave maestra de InPass"
     }
 };
 
@@ -105,40 +113,43 @@ int main() {
     // Menu
     do {
         option = 0;
-        printf("%s\n 1 - Discord\n 2 - GitHub\n 3 - Instagram\n 4 - Facebook\n 5 - Twitter\n 6 - YouTube\n 7 - Gmail\n 8 - Outlook\n 9 - Yahoo\n 10 - LinkedIn\n 11 - Pinterest\n 0 - %s\n",language[lang].selectPass , language[lang].exit);
+        printf("%s\n 1 - %s \n 2 - Discord\n 3 - GitHub\n 4 - Instagram\n 5 - Facebook\n 6 - Twitter\n 7 - YouTube\n 8 - Gmail\n 9 - Outlook\n 10 - Yahoo\n 11 - LinkedIn\n 12 - Pinterest\n 0 - %s\n", language[lang].selectPass, language[lang].decryptInPass, language[lang].exit);
         scanf("%d", &option);
         switch (option) {
             case 1:
-                printf("Discord InPass: %s\n", myInPass.discord);
+                printf("%s: %s\n", language[lang].decryptedInPass, masterPass);
                 break;
             case 2:
-                printf("GitHub InPass: %s\n", myInPass.github);
+                printf("Discord InPass: %s\n", myInPass.discord);
                 break;
             case 3:
-                printf("Instagram InPass: %s\n", myInPass.instagram);
+                printf("GitHub InPass: %s\n", myInPass.github);
                 break;
             case 4:
-                printf("Facebook InPass: %s\n", myInPass.facebook);
+                printf("Instagram InPass: %s\n", myInPass.instagram);
                 break;
             case 5:
-                printf("Twitter InPass: %s\n", myInPass.twitter);
+                printf("Facebook InPass: %s\n", myInPass.facebook);
                 break;
             case 6:
-                printf("YouTube InPass: %s\n", myInPass.youtube);
+                printf("Twitter InPass: %s\n", myInPass.twitter);
                 break;
             case 7:
-                printf("Gmail InPass: %s\n", myInPass.gmail);
+                printf("YouTube InPass: %s\n", myInPass.youtube);
                 break;
             case 8:
-                printf("Outlook InPass: %s\n", myInPass.outlook);
+                printf("Gmail InPass: %s\n", myInPass.gmail);
                 break;
             case 9:
-                printf("Yahoo InPass: %s\n", myInPass.yahoo);
+                printf("Outlook InPass: %s\n", myInPass.outlook);
                 break;
             case 10:
-                printf("LinkedIn InPass: %s\n", myInPass.linkedin);
+                printf("Yahoo InPass: %s\n", myInPass.yahoo);
                 break;
             case 11:
+                printf("LinkedIn InPass: %s\n", myInPass.linkedin);
+                break;
+            case 12:
                 printf("Pinterest InPass: %s\n", myInPass.pinterest);
                 break;
             case 0:
@@ -159,7 +170,7 @@ int main() {
 }
 
 void createInPass() {
-    // Use software name as the key of Caesar cipher to create the password using the master password (Non unreadable)
+    // Usar o numero de caracteres do nome dos servicos como chave para criptografia
     // Discord
     for (int i = 0; i < strlen(masterPass); i++) {
         myInPass.discord[i] = masterPass[i] + strlen("discord") * strlen(masterPass);
